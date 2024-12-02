@@ -6,4 +6,4 @@ $username = 'root';
 $password = 'root';
 $port = 8889;
 
-$pdo = new PDO("mysql:host=$host;dbname=$dbname;port=$port", $username, $password);
+$db = new PDO("mysql:host=$host;dbname=$dbname;port=$port", $username, $password);

@@ -1,15 +1,29 @@
 <?php
 
-global $pdo;
+header('Content-Type: application/json');
+
 require_once 'connect.php';
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/functions.php';
 
-$sql = "SELECT * FROM `posts` LIMIT 10";
 
-$stmt = $pdo->query($sql);
-$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$q = $_GET['q'] ?? null;
+if(!$q){
+    return false;
+}
+$params = explode('/', $q);
 
-echo json_encode($data);
+$type = $params[0];
+$id = $params[1] ?? 0;
+
+if($type === 'posts') {
+    echo getPosts();
+}
+else if($type === 'post') {
+    echo getPost($id);
+}
+
+
 
 
 
