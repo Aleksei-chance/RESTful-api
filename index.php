@@ -39,7 +39,13 @@ if($method === 'GET'){
     } else {
         echo error();
     }
-} else {
+} else if($method === 'DELETE') {
+    if($type === 'post' && $id) {
+        echo deletePost($id);
+    } else {
+        echo error();
+    }
+}  else {
     echo error(405);
 }
 

@@ -86,3 +86,20 @@ function updatePost($id, $data):string
     }
     return error();
 }
+
+function deletePost($id):string
+{
+    global $db;
+    $sql = "DELETE FROM `posts` WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stat = $stmt->execute([
+        'id' => $id,
+    ]);
+    if($stat){
+        $ret = [
+            'status' => true,
+            'massage' => 'Post is deleted'
+        ];
+        return json_encode($ret);
+    }
+}
